@@ -4,6 +4,10 @@ class Restaurant {
     this.category = category;
     this.id  = id;
     this.ratings = {};
+    this.numRatings = function() {
+      return Object.values(this.ratings).length;
+    }
+
     this.averageRating = function() {
       var scores = Object.values(this.ratings);
 
@@ -16,12 +20,6 @@ class Restaurant {
     }
   }
   
-  
-  // updateRating(rating) {
-  //   this.sumRatings += rating;
-  //   this.numRatings++;
-  //   this.averageRating = sumRatings/numRatings;
-  // }
 }
 
 class User {
@@ -92,6 +90,11 @@ class RestaurantRecommender{
     user.ratings[rating.restaurant] = rating.score;
   }
 
+  updateRating(rating) {
+    this.sumRatings += rating;
+    this.numRatings++;
+    this.averageRating = sumRatings/numRatings;
+  }
   // deleteRestaurant() {
   // // make sure to also delete a restaurant from the categories.
   // }
@@ -114,7 +117,7 @@ var panda = new Restaurant('Panda Express',  yelp.restaurants.length, 'Chinese')
 yelp.addRestaurant(panda);
 var rintaroRating = new Rating('Rintaro', 'Japanese', 'isabelleyiu', 95);
 yelp.addRating(rintaroRating);
-console.log(rintaro.averageRating());
+console.log(rintaro.numRatings());
 
 console.log(yelp);
 
