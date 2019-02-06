@@ -1,82 +1,84 @@
-// class Restaurant {
-//   constructor(name, category) {
-//     this.name = name;
-//     this.category = category;
-//   }
-// }
+class Restaurant {
+  constructor(name, id, category) {
+    this.name = name;
+    this.category = category;
+    this.id  = id;
+    this.ratings = [];
+    this.averageRating = 5;
+    this.numRatings = 0;
+    this.sumRatings = 0;
+  }
+  addRating(score){
+    // Adds a user rating for a restaurant
+    this.ratings.push(score);  
+  }
 
-// Restaurant.prototype.getAverageScore = function(scores) {
+  getAverageScore() {
+    var totalScore = this.ratings.reduce(function(acc, score){
+      return acc + score;
+    }, 0);
+  
+    return totalScore / this.ratings.length;
+  }
+  
+  updateRating(rating) {
+    this.sumRatings += rating;
+    this.numRatings++;
+    this.averageRating = sumRatings/numRatings;
+  }
 
-// }
+}
 
-// class User {
-//   constructor(name) {
-//     this.name = name;
+class User {
+  constructor(firstName, lastName, userName, id) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.userName = userName;
+    this.id = id;
+  }
+}
 
-//   }
-// }
+class Category {
+  constructor(type) {
+    this.type = type;
+  }
+}
 
-// class Category {
-//   constructor(type) {
-//     this.type = [];
-//   }
-// }
+class Rating {
+  constructor(restaurant, category, user, score) {
+      this.restaurant = restaurant;
+      this.category = category;
+      this.user = user;
+      this.score = score;
+  }
+}
 
 class RestaurantRecommender{
-  constructor (ratings, restaurants, users, categories) {
+  constructor() {
   // All main properties should go here.
-  this.ratings = [];
   this.restaurants = [];
   this.users = [];
   this.categories = {};
   }
 
-  addRestaurant(name, category) {
-  // Adds a new Restaurant to the System
-  this.restaurants.push({
-    name: name,
-    category: category
-  });
-  }
-
-  addUser(name) {
+  addUser(user) {
   // Adds a new User to the System
-    this.users.push({
-      name : name
-    });
+    this.users.push(user);
   }
 
-  addCategory(category) {
-  // Adds a new Category to the System
-    this.categories[category] = [];
-  }
-
-  addRating(restaurant, user, rating){
-  // Adds a user rating for a restaurant
-    this.ratings.push({
-      restaurant : restaurant,
-      user : user, 
-      rating : rating
-    });
-  }
-
-  addRestauranttoCategory(restaurant, category){
-  // Adds Restaurant to Category
-  // Adds Category to Restaurant
-    if(this.categories[category]) {
-      this.categories[category].push(restaurant);
+  addRestaurant(restaurant) {
+    // Adds a new Restaurant to the System
+    this.restaurants.push(restaurant);
+    if(this.categories[restaurant.category]) {
+      this.categories[restaurant.category].push(restaurant.name);
     } else {
-      this.categories[category] = [];
-      this.categories[category].push(restaurant);
+      this.categories[restaurant.category] = [restaurant.name];
     }
-    
-    this.restaurants.forEach(function(obj){
-      if(obj.name === restaurant) {
-        obj.category = category;
-      }
-    });
   }
 
+  
+
+  
 
   // deleteUser() {
   // // Deletes a User from the system
@@ -92,17 +94,33 @@ class RestaurantRecommender{
   // }
 
   // filter(){
-  // }
+  // } 
 }
 
 
+var yelp = new RestaurantRecommender ();
+var isabelle = new User('Isabelle', 'Yiu', 'isabelleyiu', yelp.users.length);
+yelp.addUser(isabelle);
+var rintaro = new Restaurant('Rintaro',  yelp.restaurants.length, 'Japanese');
+yelp.addRestaurant(rintaro);
+var rintaroRating = new Rating('Rintaro', 'Japanese', 'Isabelle', '95');
+rintaro.addRating(rintaroRating.score);
+console.log(rintaro.getAverageScore());
 
 
-var yelp = new RestaurantRecommender ('ratings', 'restaurants', 'users', 'categories')
-yelp.addRating('abcRestaurant', 'isabelle', 99);
-yelp.addRestaurant('McDonalds', 'fastfood');
-yelp.addUser('isabelle');
-yelp.addCategory('fastfood');
-yelp.addRestauranttoCategory('Panda Express', 'Chinese');
-yelp.addRestauranttoCategory('McDonalds', 'fastfood');
+// var chinese = new Category('Chinese');
+// yelp.addCategory(chinese);
 console.log(yelp);
+
+// $(document).ready(function(){
+
+//   var yelp = new RestaurantRecommender ();
+//   console.log(yelp);
+//   $('#signup').submit(function(event){
+    
+//     var username = $('#username').val();
+//     console.log(username);
+//     var newUser = new User('Isabelle', 'Yiu', username, yelp.length);
+//     yelp.addUser(newUser);
+//   });
+// });
