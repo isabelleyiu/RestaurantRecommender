@@ -4,17 +4,18 @@ class Restaurant {
     this.category = category;
     this.id  = id;
     this.ratings = {};
-    // this.averageRating = this.getAverageScore();
-  }
-  
+    this.averageRating = function() {
+      var scores = Object.values(this.ratings);
 
-  getAverageScore() {
-    var totalScore = this.ratings.reduce(function(acc, score){
-      return acc + score;
-    }, 0);
-  
-    return totalScore / this.ratings.length;
+      var totalScores = 0;
+      scores.forEach(function(score){
+        totalScores += score;
+      });
+    
+      return totalScores / scores.length;
+    }
   }
+  
   
   // updateRating(rating) {
   //   this.sumRatings += rating;
@@ -113,7 +114,7 @@ var panda = new Restaurant('Panda Express',  yelp.restaurants.length, 'Chinese')
 yelp.addRestaurant(panda);
 var rintaroRating = new Rating('Rintaro', 'Japanese', 'isabelleyiu', 95);
 yelp.addRating(rintaroRating);
-// console.log(rintaro.getAverageScore());
+console.log(rintaro.averageRating());
 
 console.log(yelp);
 
