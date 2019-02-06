@@ -3,15 +3,10 @@ class Restaurant {
     this.name = name;
     this.category = category;
     this.id  = id;
-    this.ratings = [];
-    this.averageRating = 5;
-    this.numRatings = 0;
-    this.sumRatings = 0;
+    this.ratings = {};
+    // this.averageRating = this.getAverageScore();
   }
-  addRating(score){
-    // Adds a user rating for a restaurant
-    this.ratings.push(score);  
-  }
+  
 
   getAverageScore() {
     var totalScore = this.ratings.reduce(function(acc, score){
@@ -21,12 +16,11 @@ class Restaurant {
     return totalScore / this.ratings.length;
   }
   
-  updateRating(rating) {
-    this.sumRatings += rating;
-    this.numRatings++;
-    this.averageRating = sumRatings/numRatings;
-  }
-
+  // updateRating(rating) {
+  //   this.sumRatings += rating;
+  //   this.numRatings++;
+  //   this.averageRating = sumRatings/numRatings;
+  // }
 }
 
 class User {
@@ -35,6 +29,7 @@ class User {
     this.lastName = lastName;
     this.userName = userName;
     this.id = id;
+    this.ratings = {};
   }
 }
 
@@ -66,6 +61,12 @@ class RestaurantRecommender{
     this.users.push(user);
   }
 
+  // deleteUser(userid) {
+  // // Deletes a User from the system
+
+  // // Deletes User ratings for a restaurant.
+  // }
+
   addRestaurant(restaurant) {
     // Adds a new Restaurant to the System
     this.restaurants.push(restaurant);
@@ -76,14 +77,19 @@ class RestaurantRecommender{
     }
   }
 
-  
+  addRating(rating){
+    // Adds a user rating for a restaurant
+    var restaurant = this.restaurants.find(function(obj){
+      return obj.name === rating.restaurant;
+    });
+    
+    var user = this.users.find(function(obj){
+      return obj.userName === rating.user;
+    });
 
-  
-
-  // deleteUser() {
-  // // Deletes a User from the system
-  // // Deletes User ratings for a restaurant.
-  // }
+    restaurant.ratings[rating.user] = rating.score;  
+    user.ratings[rating.restaurant] = rating.score;
+  }
 
   // deleteRestaurant() {
   // // make sure to also delete a restaurant from the categories.
@@ -103,13 +109,12 @@ var isabelle = new User('Isabelle', 'Yiu', 'isabelleyiu', yelp.users.length);
 yelp.addUser(isabelle);
 var rintaro = new Restaurant('Rintaro',  yelp.restaurants.length, 'Japanese');
 yelp.addRestaurant(rintaro);
-var rintaroRating = new Rating('Rintaro', 'Japanese', 'Isabelle', '95');
-rintaro.addRating(rintaroRating.score);
-console.log(rintaro.getAverageScore());
+var panda = new Restaurant('Panda Express',  yelp.restaurants.length, 'Chinese');
+yelp.addRestaurant(panda);
+var rintaroRating = new Rating('Rintaro', 'Japanese', 'isabelleyiu', 95);
+yelp.addRating(rintaroRating);
+// console.log(rintaro.getAverageScore());
 
-
-// var chinese = new Category('Chinese');
-// yelp.addCategory(chinese);
 console.log(yelp);
 
 // $(document).ready(function(){
