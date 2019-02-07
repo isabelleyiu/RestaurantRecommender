@@ -178,3 +178,5 @@ console.log(yelp);
 //     console.log(yelp);
 //   });
 // });
+
+module.exports=RestaurantRecommender;
