@@ -2,44 +2,29 @@ class Restaurant {
   constructor(name, category) {
     this.name = name;
     this.category = category;
-    this.ratings = {};
-    this.numRatings = function() {
-      return Object.values(this.ratings).length;
-    }
-
-    this.averageRating = function() {
-      var scores = Object.values(this.ratings);
-
-      var totalScores = 0;
-      scores.forEach(function(score){
-        totalScores += score;
-      });
-    
-      return totalScores / scores.length;
-    }
+    this.numReviews;
+    this.averageScore;
   }
-  
 }
 
 class User {
   constructor(userName) {
     this.userName = userName;
-    this.ratings = {};
   }
 }
 
 class Category {
-  constructor(type) {
-    this.type = type;
+  constructor(category) {
+    this.category = category;
   }
 }
 
 class Rating {
-  constructor(restaurant, category, user, score) {
+  constructor(restaurant, category, user, rating) {
       this.restaurant = restaurant;
       this.category = category;
       this.user = user;
-      this.score = score;
+      this.rating = rating;
   }
 }
 
@@ -48,57 +33,89 @@ class RestaurantRecommender{
   // All main properties should go here.
   this.restaurants = [];
   this.users = [];
+  this.ratings = [];
   this.categories = {};
   }
 
   addUser(user) {
   // Adds a new User to the System
-    this.users.push(user);
+    var newUser = new User(user);
+    this.users.push(newUser);
   }
 
   deleteUser(userName) {
     // Deletes a User from the system
-    var userId;
-    this.users.forEach(function(user){
-      if(user.userName === userName) {
-        userId = user.id
+    var index = this.users.findIndex(function(user){
+      return user.userName === userName;
+    });
+    this.users.splice(index, 1);
+
+  // Deletes User ratings for a restaurant.
+    this.ratings.forEach(function(rating, i){
+      if(rating.user === userName) {
+        index = i;
       }
     });
-    this.users.splice(userId, 1);
-
-    // Deletes User ratings for a restaurant.
-    this.restaurants.forEach(function(restaurant){
-      if(restaurant.ratings[userName]) {
-        delete restaurant.ratings[userName];
-      }
-    });
-
+    this.ratings.splice(index, 1);
   }
 
-  addRestaurant(restaurant) {
+  addRestaurant(name, category) {
     // Adds a new Restaurant to the System
-    this.restaurants.push(restaurant);
-    if(this.categories[restaurant.category]) {
-      this.categories[restaurant.category].push(restaurant.name);
+    var newRestaurant = new Restaurant(name, category);
+    this.restaurants.push(newRestaurant);
+
+    // Add restaurant to category 
+    if(this.categories[category]) {
+      this.categories[category].push(newRestaurant.name);
     } else {
-      this.categories[restaurant.category] = [restaurant.name];
+      this.categories[category] = [newRestaurant.name];
     }
   }
 
-  addRating(rating){
+  addRating(restaurant, category, user, rating){
     // Adds a user rating for a restaurant
-    var restaurant = this.restaurants.find(function(obj){
-      return obj.name === rating.restaurant;
-    });
+    var newRating = new Rating(restaurant, category, user, rating);
     
-    var user = this.users.find(function(obj){
-      return obj.userName === rating.user;
+    // update the score if previous rating by same user already exists
+    this.ratings.forEach(function(rating){
+      if(rating.restaurant === newRating.restaurant && rating.user === newRating.user) {
+        rating.rating = newRating.rating;
+      } 
     });
-    // this should update rating 
-    restaurant.ratings[rating.user] = rating.score;  
-    user.ratings[rating.restaurant] = rating.score;
+
+    // add rating 
+    this.ratings.push(newRating);
+
+    // add restaurant if it's not in the system
+    var restaurantIndex = this.restaurants.findIndex(function(restaurant){
+      return restaurant.name === newRating.restaurant;
+    });
+    if(restaurantIndex === -1) {
+      this.addRestaurant(newRating.restaurant, newRating.category);
+    }
+
+    // add user if it's not in system
+    var userIndex = this.users.findIndex(function(user){
+      return user.userName === newRating.user;
+    });
+    if(userIndex === -1) {
+      this.addUser(newRating.user);
+    }
   }
 
+  getRestaurantAverageScore(restaurant) {
+    var totalScores = 0;
+    var numReview = 0;
+
+    this.ratings.forEach(function(rating){
+      if(rating.restaurant === restaurant) {
+        numReview += 1;
+        totalScores += rating.rating;
+      }
+    });
+
+    return totalScores / numReview;
+  }
 
   // deleteRestaurant() {
   // // make sure to also delete a restaurant from the categories.
@@ -113,53 +130,51 @@ class RestaurantRecommender{
   } 
 
   filterByAverageScore(score){
-    var result = [];
-    var filtered = this.restaurants.filter(function(obj){
-      if(obj.averageRating() >= score) {
-        return obj;
+    var self = this;
+    var filtered = this.restaurants.filter(function(restaurant){
+      if(self.getRestaurantAverageScore(restaurant.name) >= score) {
+        return restaurant.name;
       }
     });
-    var sorted = filtered.sort(function(a, b){
-      return b.averageRating() - a.averageRating();
-    });
-    sorted.forEach(function(obj){
-      result.push(obj.name);
-    });
-    return result;
+    return filtered;
   }
+
+
 }
 
 
 var yelp = new RestaurantRecommender ();
-var isabelle = new User('isabelleyiu');
-yelp.addUser(isabelle);
-var kelly = new User('kelly');
-yelp.addUser(kelly);
-var rintaro = new Restaurant('Rintaro', 'Japanese');
-yelp.addRestaurant(rintaro);
-var panda = new Restaurant('Panda Express', 'Chinese');
-yelp.addRestaurant(panda);
-var rintaroRating = new Rating('Rintaro', 'Japanese', 'isabelleyiu', 85);
-yelp.addRating(rintaroRating);
-var pandaRating = new Rating('Panda Express', 'Chinese', 'kelly', 95);
-yelp.addRating(pandaRating);
-console.log(rintaro.numRatings());
+yelp.addUser('isabelleyiu');
+yelp.addUser('kelly');
+yelp.addRestaurant('Rintaro', 'Japanese');
+yelp.addRestaurant('Panda Express', 'Chinese');
+yelp.addRating('Rintaro', 'Japanese', 'isabelleyiu', 85);
+yelp.addRating('Panda Express', 'Chinese', 'kelly', 95);
+yelp.addRating('Chaya', 'Thai', 'Danielle', 80);
+yelp.addRating('Chaya', 'Thai', 'Chisom', 100);
+yelp.addRating('Chaya', 'Thai', 'Ingrid', 0);
 // yelp.deleteUser('isabelleyiu');
-// console.log(yelp.filterByCategory('Chinese'));
-console.log(yelp.filterByAverageScore(40));
+console.log(yelp.filterByCategory('Chinese'));
+console.log(yelp.getRestaurantAverageScore('Chaya'));
+console.log(yelp.filterByAverageScore(85));
+// // console.log(yelp.filterByAverageScore(40));
 console.log(yelp);
 
 // $(document).ready(function(){
 
-//   var yelp = new RestaurantRecommender ();
+//   var yelp = new RestaurantRecommender();
   
 //   $('#userForm').on('submit', function(event){
 //     event.preventDefault();
-//     var $username = $('#username').val();
-//     var newUser = new User($username, yelp.users.length);
-//     yelp.addUser(newUser);
+//     var $userInput = $('#username');
+//     var username = $userInput.val().trim();
+
+//     // adding new user to RestaurantRecommender class
+//     yelp.addUser(username);
+
+//     // reset form input
+//     $userInput.val('');
+
+//     console.log(yelp);
 //   });
-
-
-//   console.log(yelp);
 // });
