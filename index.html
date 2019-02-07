@@ -10,10 +10,57 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" type="text/css" href="index.css">
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Add your restaurant</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
+    <header>
+      <form id="userForm">
+          <label>Register as a User</label>
+          <input id="username" type="text" placeholder="YOUR USERNAME">
+          <input type="submit">
+      </form>
+    </header>
+
+    <section>
+        <form id="restaurantForm">
+            <label>Register your restaurant</label>
+            <input id="restaurantName" type="text" placeholder="NAME">
+            <input id="restaurantCategory" type="text" placeholder="CATEGORY">
+            <input type="submit">
+        </form>
+      </section>
+
+    <section>
+      <form id="searchBar" class="form-inline">
+          <label>What are you craving for?</label>
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </section>
+        
+
+      
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
