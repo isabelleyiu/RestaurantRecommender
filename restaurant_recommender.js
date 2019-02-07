@@ -1,8 +1,7 @@
 class Restaurant {
-  constructor(name, id, category) {
+  constructor(name, category) {
     this.name = name;
     this.category = category;
-    this.id  = id;
     this.ratings = {};
     this.numRatings = function() {
       return Object.values(this.ratings).length;
@@ -23,9 +22,8 @@ class Restaurant {
 }
 
 class User {
-  constructor(userName, id) {
+  constructor(userName) {
     this.userName = userName;
-    this.id = id;
     this.ratings = {};
   }
 }
@@ -101,11 +99,6 @@ class RestaurantRecommender{
     user.ratings[rating.restaurant] = rating.score;
   }
 
-  // updateRating(rating) {
-  //   this.sumRatings += rating;
-  //   this.numRatings++;
-  //   this.averageRating = sumRatings/numRatings;
-  // }
 
   // deleteRestaurant() {
   // // make sure to also delete a restaurant from the categories.
@@ -115,19 +108,28 @@ class RestaurantRecommender{
   // // make sure to delete categories from a restaurant that had them.
   // }
 
-  // filter(){
-  // } 
+  filterByCategory(category){
+    return this.categories[category];
+  } 
+
+  // filterByAverageScore(score){
+  //   return this.restaurants.filter(function(obj){
+  //     if(obj.averageRating() >= score) {
+  //       return obj.name;
+  //     }
+  //   });
+  // }
 }
 
 
 var yelp = new RestaurantRecommender ();
-var isabelle = new User('isabelleyiu', yelp.users.length);
+var isabelle = new User('isabelleyiu');
 yelp.addUser(isabelle);
-var kelly = new User('kelly', yelp.users.length);
+var kelly = new User('kelly');
 yelp.addUser(kelly);
-var rintaro = new Restaurant('Rintaro',  yelp.restaurants.length, 'Japanese');
+var rintaro = new Restaurant('Rintaro', 'Japanese');
 yelp.addRestaurant(rintaro);
-var panda = new Restaurant('Panda Express',  yelp.restaurants.length, 'Chinese');
+var panda = new Restaurant('Panda Express', 'Chinese');
 yelp.addRestaurant(panda);
 var rintaroRating = new Rating('Rintaro', 'Japanese', 'isabelleyiu', 95);
 yelp.addRating(rintaroRating);
@@ -135,6 +137,8 @@ var pandaRating = new Rating('Panda Express', 'Chinese', 'kelly', 95);
 yelp.addRating(pandaRating);
 console.log(rintaro.numRatings());
 yelp.deleteUser('isabelleyiu');
+console.log(yelp.filterByCategory('Chinese'));
+// console.log(yelp.filterByAverageScore(40));
 console.log(yelp);
 
 // $(document).ready(function(){
