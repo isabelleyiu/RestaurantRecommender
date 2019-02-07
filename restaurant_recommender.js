@@ -112,13 +112,21 @@ class RestaurantRecommender{
     return this.categories[category];
   } 
 
-  // filterByAverageScore(score){
-  //   return this.restaurants.filter(function(obj){
-  //     if(obj.averageRating() >= score) {
-  //       return obj.name;
-  //     }
-  //   });
-  // }
+  filterByAverageScore(score){
+    var result = [];
+    var filtered = this.restaurants.filter(function(obj){
+      if(obj.averageRating() >= score) {
+        return obj;
+      }
+    });
+    var sorted = filtered.sort(function(a, b){
+      return b.averageRating() - a.averageRating();
+    });
+    sorted.forEach(function(obj){
+      result.push(obj.name);
+    });
+    return result;
+  }
 }
 
 
@@ -131,14 +139,14 @@ var rintaro = new Restaurant('Rintaro', 'Japanese');
 yelp.addRestaurant(rintaro);
 var panda = new Restaurant('Panda Express', 'Chinese');
 yelp.addRestaurant(panda);
-var rintaroRating = new Rating('Rintaro', 'Japanese', 'isabelleyiu', 95);
+var rintaroRating = new Rating('Rintaro', 'Japanese', 'isabelleyiu', 85);
 yelp.addRating(rintaroRating);
 var pandaRating = new Rating('Panda Express', 'Chinese', 'kelly', 95);
 yelp.addRating(pandaRating);
 console.log(rintaro.numRatings());
-yelp.deleteUser('isabelleyiu');
-console.log(yelp.filterByCategory('Chinese'));
-// console.log(yelp.filterByAverageScore(40));
+// yelp.deleteUser('isabelleyiu');
+// console.log(yelp.filterByCategory('Chinese'));
+console.log(yelp.filterByAverageScore(40));
 console.log(yelp);
 
 // $(document).ready(function(){
