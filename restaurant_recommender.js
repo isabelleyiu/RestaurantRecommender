@@ -130,16 +130,15 @@ class RestaurantRecommender{
   } 
 
   filterByAverageScore(score){
+    var aboveScoreRestaurants = [];
     var self = this;
-    var filtered = this.restaurants.filter(function(restaurant){
+    var filtered = this.restaurants.forEach(function(restaurant){
       if(self.getRestaurantAverageScore(restaurant.name) >= score) {
-        return restaurant.name;
+        aboveScoreRestaurants.push(restaurant.name);
       }
     });
-    return filtered;
+    return aboveScoreRestaurants;
   }
-
-
 }
 
 
