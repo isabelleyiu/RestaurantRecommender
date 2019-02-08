@@ -75,16 +75,19 @@ class RestaurantRecommender{
   addRating(restaurant, category, user, rating){
     // Adds a user rating for a restaurant
     var newRating = new Rating(restaurant, category, user, rating);
-    
+    var ratingExists = false;
+
     // update the score if previous rating by same user already exists
     this.ratings.forEach(function(rating){
       if(rating.restaurant === newRating.restaurant && rating.user === newRating.user) {
         rating.rating = newRating.rating;
-      } 
+        ratingExists = true;
+      }
     });
 
-    // add rating 
-    this.ratings.push(newRating);
+    if(!ratingExists) {
+      this.ratings.push(newRating);
+    }
 
     // add restaurant if it's not in the system
     var restaurantIndex = this.restaurants.findIndex(function(restaurant){
@@ -163,6 +166,7 @@ $(document).ready(function(){
 
   var yelp = new RestaurantRecommender();
   
+  // Sign up form
   $('.userForm').on('submit', function(event){
     event.preventDefault();
     var $userInput = $('#username');
@@ -176,6 +180,7 @@ $(document).ready(function(){
     console.log(yelp);
   });
 
+  // Add a restaurant form
   $('.restaurantForm').on('submit', function(event){
     event.preventDefault();
     var $restaurantName = $('#restaurantName');
@@ -183,6 +188,7 @@ $(document).ready(function(){
     var restaurantName = $restaurantName.val().trim();
     var restaurantCategory = $restaurantCategory.val().trim();
 
+    // add restaurant to system
     yelp.addRestaurant(restaurantName, restaurantCategory);
 
     $restaurantName.val('');
@@ -216,7 +222,7 @@ $(document).ready(function(){
     var $searchCategory = $('#searchCategory');
     var searchCategory = $searchCategory.val().trim();
 
-    // adding new user to RestaurantRecommender class
+    // adding new user to search restaurants by category
     var result = yelp.filterByCategory(searchCategory);
 
     // render result inside searchResult div
