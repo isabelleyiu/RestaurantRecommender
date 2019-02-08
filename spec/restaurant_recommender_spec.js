@@ -1,5 +1,5 @@
 describe("RestaurantRecommender", function() {
-  var RestaurantRecommender = require('../restaurant_recommender.js');
+  var RestaurantRecommender = require('../restaurant_recommender.js').default.default;
   var rr;
 
   beforeEach(function() {
@@ -27,15 +27,4 @@ describe("RestaurantRecommender", function() {
     });
   });
 
-  // describe("Restaurant", function() {
-  //   it("should add a user object to User", function() {
-  //     rr.addUser('Isabelle');
-  //     expect(rr.users.length).toEqual(1);
-  //   });
-
-  //   it("should set username", function() {
-  //     rr.addUser('Isabelle');
-  //     expect(rr.users[0].userName).toEqual('Isabelle');
-  //   });
-  // });
 });

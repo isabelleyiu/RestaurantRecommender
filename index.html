@@ -35,7 +35,7 @@
       </nav>
 
     <header>
-      <form id="userForm">
+      <form class="userForm">
           <label>Register as a User</label>
           <input id="username" type="text" placeholder="YOUR USERNAME">
           <input type="submit">
@@ -43,13 +43,24 @@
     </header>
 
     <section>
-        <form id="restaurantForm">
+        <form class="restaurantForm">
             <label>Register your restaurant</label>
             <input id="restaurantName" type="text" placeholder="NAME">
             <input id="restaurantCategory" type="text" placeholder="CATEGORY">
             <input type="submit">
         </form>
-      </section>
+    </section>
+
+    <section>
+      <form class="ratingForm">
+          <label>Rate a restaurant</label>
+          <input id="ratingRestaurant" type="text" placeholder="RESTAURANT NAME">
+          <input id="ratingCategory" type="text" placeholder="CATEGORY">
+          <input id="ratingUsername" type="text" placeholder="YOUR USERNAME">
+          <input id="rating" type="text" placeholder="RATING 1 TO 100">
+          <input type="submit">
+      </form>
+    </section>
 
     <section>
       <form id="searchBar" class="form-inline">
