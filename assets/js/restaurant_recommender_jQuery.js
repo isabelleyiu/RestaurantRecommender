@@ -24,7 +24,8 @@ $(document).ready(function(){
     var selectedCategory = $('#category-select').find(":selected").text();
 
     // adding new user to search restaurants by category
-    var results = yelp.filterByCategory(selectedCategory);
+    var results = yelp.sortByAverageScoreInCategory(selectedCategory);
+    console.log(results);
     // console.log(results);
 
     $('#search-results').empty();
@@ -84,13 +85,11 @@ $(document).ready(function(){
 
   // load dummy data 
   function loadRestaurant(yelp){
-    if(yelp.restaurants.length === 0){
+    if(yelp.ratings.length === 0){
       // look through dummy data
-      for(var i = 0; i < dummyData.length; i++){
-        var restaurantName = dummyData[i].name;
-        var restaurantCategory = dummyData[i].category;
-        yelp.addRestaurant(restaurantName, restaurantCategory);
-      }
+      dummyData.forEach(function(rating){
+        yelp.addRating(rating.restaurant, rating.category, rating.user, rating.rating);
+      });
       console.log(yelp)
     }
   }
@@ -98,15 +97,14 @@ $(document).ready(function(){
   // add options fot category from drop down in HTML
   function createCategoryOptions(yelp){
     var $categorySelect = $('#category-select');
-    // remove all categories b4 adding new oneand exisiting
+    // remove all categories b4 adding new one 
     $categorySelect.empty();
   
     // craete an empty option 
-    // so that the select isn't defualted to any one category
+    // so that the select isn't defaulted to any one category
     var option = $('<option>');
     $categorySelect.append(option);
-  
-  
+
     for (var key in yelp.categories) {
       if (yelp.categories.hasOwnProperty(key)) {
         // Do things here
