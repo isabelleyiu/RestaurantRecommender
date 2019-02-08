@@ -6,11 +6,10 @@ $(document).ready(function(){
   createCategoryOptions(yelp);
   
   // Sign up form
-  $('.userForm').on('submit', function(event){
+  $('#userForm').on('submit', function(event){
     event.preventDefault();
     var $userInput = $('#username');
     var username = $userInput.val().trim();
-
     // adding new user to RestaurantRecommender class
     yelp.addUser(username);
 
@@ -26,7 +25,6 @@ $(document).ready(function(){
     // adding new user to search restaurants by category
     var results = yelp.sortByAverageScoreInCategory(selectedCategory);
     console.log(results);
-    // console.log(results);
 
     $('#search-results').empty();
 
@@ -44,7 +42,7 @@ $(document).ready(function(){
 
   });
 
-  $('.ratingForm').on('submit', function(event){
+  $('#ratingForm').on('submit', function(event){
     event.preventDefault();
     var $ratingRestaurant = $('#ratingRestaurant');
     var $ratingCategory = $('#ratingCategory');
@@ -66,7 +64,7 @@ $(document).ready(function(){
   })
 
   // Add a restaurant form
-  $('.restaurantForm').on('submit', function(event){
+  $('#restaurantForm').on('submit', function(event){
     event.preventDefault();
     var $restaurantName = $('#restaurantName');
     var $restaurantCategory = $('#restaurantCategory');
