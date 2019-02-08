@@ -219,6 +219,7 @@ $(document).ready(function(){
   
   $('#searchBar').on('submit', function(event){
     event.preventDefault();
+    $('#searchResult').empty();
     var $searchCategory = $('#searchCategory');
     var searchCategory = $searchCategory.val().trim();
 
