@@ -142,40 +142,57 @@ class RestaurantRecommender{
 }
 
 
-var yelp = new RestaurantRecommender ();
-yelp.addUser('isabelleyiu');
-yelp.addUser('kelly');
-yelp.addRestaurant('Rintaro', 'Japanese');
-yelp.addRestaurant('Panda Express', 'Chinese');
-yelp.addRating('Rintaro', 'Japanese', 'isabelleyiu', 85);
-yelp.addRating('Panda Express', 'Chinese', 'kelly', 95);
-yelp.addRating('Chaya', 'Thai', 'Danielle', 80);
-yelp.addRating('Chaya', 'Thai', 'Chisom', 100);
-yelp.addRating('Chaya', 'Thai', 'Ingrid', 0);
-// yelp.deleteUser('isabelleyiu');
-console.log(yelp.filterByCategory('Chinese'));
-console.log(yelp.getRestaurantAverageScore('Chaya'));
-console.log(yelp.filterByAverageScore(85));
-// // console.log(yelp.filterByAverageScore(40));
-console.log(yelp);
+// var yelp = new RestaurantRecommender ();
+// yelp.addUser('isabelleyiu');
+// yelp.addUser('kelly');
+// yelp.addRestaurant('Rintaro', 'Japanese');
+// yelp.addRestaurant('Panda Express', 'Chinese');
+// yelp.addRating('Rintaro', 'Japanese', 'isabelleyiu', 85);
+// yelp.addRating('Panda Express', 'Chinese', 'kelly', 95);
+// yelp.addRating('Chaya', 'Thai', 'Danielle', 80);
+// yelp.addRating('Chaya', 'Thai', 'Chisom', 100);
+// yelp.addRating('Chaya', 'Thai', 'Ingrid', 0);
+// // yelp.deleteUser('isabelleyiu');
+// console.log(yelp.filterByCategory('Chinese'));
+// console.log(yelp.getRestaurantAverageScore('Chaya'));
+// console.log(yelp.filterByAverageScore(85));
+// // // console.log(yelp.filterByAverageScore(40));
+// console.log(yelp);
 
-// $(document).ready(function(){
+$(document).ready(function(){
 
-//   var yelp = new RestaurantRecommender();
+  var yelp = new RestaurantRecommender();
   
-//   $('#userForm').on('submit', function(event){
-//     event.preventDefault();
-//     var $userInput = $('#username');
-//     var username = $userInput.val().trim();
+  $('#userForm').on('submit', function(event){
+    event.preventDefault();
+    var $userInput = $('#username');
+    var username = $userInput.val().trim();
 
-//     // adding new user to RestaurantRecommender class
-//     yelp.addUser(username);
+    // adding new user to RestaurantRecommender class
+    yelp.addUser(username);
 
-//     // reset form input
-//     $userInput.val('');
+    // reset form input
+    $userInput.val('');
 
-//     console.log(yelp);
-//   });
-// });
+    console.log(yelp);
+  });
+
+  $('#restaurantForm').on('submit', function(event){
+    event.preventDefault();
+    var $restaurantName = $('#restaurantName');
+    var $restaurantCategory = $('#restaurantCategory');
+    var restaurantName = $restaurantName.val().trim();
+    var restaurantCategory = $restaurantCategory.val().trim();
+
+    // adding new user to RestaurantRecommender class
+    yelp.addRestaurant(restaurantName, restaurantCategory);
+
+    // reset form input
+    $restaurantName.val('');
+    $restaurantCategory.val('');
+
+    console.log(yelp);
+  })
+});
 
 module.exports=RestaurantRecommender;
