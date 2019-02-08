@@ -1,34 +1,50 @@
 var dummyData = [
   {
-    name: "Taco Bell",
-    category: "Fast Food"
+    restaurant: "Taco Bell",
+    category: "Fast Food",
+    user: 'rr',
+    rating: 0
   },
   {
-    name: "Super Duper Burger",
-    category: "Fast Food"
+    restaurant: "Super Duper Burger",
+    category: "Fast Food",
+    user: 'rr',
+    rating: 0
   },
   {
-    name: "Jalsa Catering",
-    category: "Indian"
+    restaurant: "Jalsa Catering",
+    category: "Indian",
+    user: 'rr',
+    rating: 0
   },
   {
-    name: "Little Vietnam",
-    category: "Vietnamese"
+    restaurant: "Little Vietnam",
+    category: "Vietnamese",
+    user: 'rr',
+    rating: 0
   },
   {
-    name: "Hongry Kong",
-    category: "Chinese"
+    restaurant: "Hongry Kong",
+    category: "Chinese",
+    user: 'rr',
+    rating: 0
   },
   {
-    name: "Phat Philly",
-    category: "Sandwich"
+    restaurant: "Phat Philly",
+    category: "Sandwich",
+    user: 'rr',
+    rating: 0
   },
   {
-    name: "Slider Shack",
-    category: "Hawaiian"
+    restaurant: "Slider Shack",
+    category: "Hawaiian",
+    user: 'rr',
+    rating: 0
   },
   {
-    name: "Cheesecake Factory",
-    category: "American"
+    restaurant: "Cheesecake Factory",
+    category: "American",
+    user: 'rr',
+    rating: 0
   }
 ]
