@@ -31,12 +31,6 @@
                     <input id="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                     <input class="btn btn-outline-secondary" type="submit" value="Submit">
                 </form>
-
-                <!-- <form class="userForm">
-                    <label>Register as a User</label>
-                    <input id="username" type="text" placeholder="YOUR USERNAME">
-                    <input type="submit">
-                </form> -->
             </li>
           </ul>
         </div>
@@ -66,14 +60,31 @@
 
         <div class="row" align="center">
           <div class="col-6">
-            <form class="ratingForm">
-                <label>Rate a restaurant</label>
-                <input id="ratingRestaurant" type="text" placeholder="RESTAURANT NAME">
-                <input id="ratingCategory" type="text" placeholder="CATEGORY">
-                <input id="ratingUsername" type="text" placeholder="YOUR USERNAME">
-                <input id="rating" type="text" placeholder="RATING 1 TO 100">
-                <input type="submit">
-            </form>
+              <div id="ratingForm" class="card" style="width: 18rem;">
+                  <img class="card-img-top" src="assets/ratingCard.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Rate a restaurant</h5>
+                    <form>
+                        <div class="form-group">
+                          <label for="InputRestaurantName">Restaurant Name</label>
+                          <input id="ratingRestaurant" type="text" class="form-control" aria-describedby="restaurantName" placeholder="Restaurant Name">
+                        </div>
+                        <div class="form-group">
+                          <label for="InputCategory">Category</label>
+                          <input id="ratingCategory" type="text" class="form-control" placeholder="E.g. Chinese, Thai, American, Fast Food...">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputUsername">Your Username</label>
+                            <input id="ratingUsername" type="text" class="form-control" placeholder="Your Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputRaing">Give it a rating!</label>
+                            <input id="rating" type="text" class="form-control" placeholder="Rate it from 0 to 100">
+                          </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                  </div>
+                </div>
           </div>
           <div class="col-6">
             <form class="restaurantForm">
