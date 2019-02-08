@@ -60,7 +60,7 @@
 
         <div class="row" align="center">
           <div class="col-6">
-              <div id="ratingForm" class="card" style="width: 18rem;">
+              <div id="ratingForm" class="card">
                   <img class="card-img-top" src="assets/ratingCard.jpg" alt="Card image cap">
                   <div class="card-body">
                     <h5 class="card-title">Rate a restaurant</h5>
@@ -87,12 +87,28 @@
                 </div>
           </div>
           <div class="col-6">
-            <form class="restaurantForm">
+              <div id="restaurantForm" class="card" >
+                  <img class="card-img-top" src="assets/restaurantCard.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Register Your Restaurant with us!</h5>
+                    <form>
+                        <div class="form-group">
+                          <label for="InputRestaurantName">Restaurant Name</label>
+                          <input id="restaurantName" type="text" class="form-control" aria-describedby="restaurantName" placeholder="Restaurant Name">
+                        </div>
+                        <div class="form-group">
+                          <label for="InputCategory">Category</label>
+                          <input id="restaurantCategory" type="text" class="form-control" placeholder="E.g. Chinese, Thai, American, Fast Food...">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                  </div>
+            <!-- <form class="restaurantForm">
                 <label>Register your restaurant</label>
                 <input id="restaurantName" type="text" placeholder="NAME">
                 <input id="restaurantCategory" type="text" placeholder="CATEGORY">
                 <input type="submit">
-            </form>
+            </form> -->
           </div>
         </div>
       </div>
