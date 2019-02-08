@@ -1,5 +1,5 @@
 describe("RestaurantRecommender", function() {
-  var RestaurantRecommender = require('../restaurant_recommender.js').default.default;
+  var RestaurantRecommender = require('../assets/js/restaurant_recommender.js');
   var rr;
 
   beforeEach(function() {
