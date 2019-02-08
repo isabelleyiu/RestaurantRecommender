@@ -19,21 +19,31 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       
+        
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <form class="userForm">
+                <form id="userForm" class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">@</span>
+                    </div>
+                    <input id="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                    <input class="btn btn-outline-secondary" type="submit" value="Submit">
+                </form>
+
+                <!-- <form class="userForm">
                     <label>Register as a User</label>
                     <input id="username" type="text" placeholder="YOUR USERNAME">
                     <input type="submit">
-                </form>
+                </form> -->
             </li>
           </ul>
         </div>
       </nav>
      
     <!-- new UI -->
-    <div class="jumbotron">
+    <div class="jumbotron text-light">
       <div class="container" align="center">
         <h1>What are you craving for?...</h1> 
         <div class="form-group">
@@ -46,13 +56,14 @@
     </div>
 
     <section>
-      <div class="container" >
-        <div id="search-results-wrap" class="hide align-items-center">
+      <div class="container">
+        <div id="search-results-wrap" class="hide">
           <h2>Recommendated Restaurants</h2>
           <div id="search-results">
             <!-- dynamically add restaurants -->
           </div>
         </div>
+
         <div class="row" align="center">
           <div class="col-6">
             <form class="ratingForm">
