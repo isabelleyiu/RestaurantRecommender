@@ -183,10 +183,8 @@ $(document).ready(function(){
     var restaurantName = $restaurantName.val().trim();
     var restaurantCategory = $restaurantCategory.val().trim();
 
-    // adding new user to RestaurantRecommender class
     yelp.addRestaurant(restaurantName, restaurantCategory);
 
-    // reset form input
     $restaurantName.val('');
     $restaurantCategory.val('');
     console.log(yelp);
@@ -204,10 +202,8 @@ $(document).ready(function(){
     var ratingUsername = $ratingUsername.val().trim();
     var rating = $rating.val().trim();
 
-    // adding new user to RestaurantRecommender class
     yelp.addRating(ratingRestaurant, ratingCategory, ratingUsername, rating);
 
-    // reset form input
     $ratingRestaurant.val('');
     $ratingCategory.val('');
     $ratingUsername.val('');
@@ -215,6 +211,23 @@ $(document).ready(function(){
     console.log(yelp);
   });
   
+  $('#searchBar').on('submit', function(event){
+    event.preventDefault();
+    var $searchCategory = $('#searchCategory');
+    var searchCategory = $searchCategory.val().trim();
+
+    // adding new user to RestaurantRecommender class
+    var result = yelp.filterByCategory(searchCategory);
+
+    // render result inside searchResult div
+    result.forEach(function(restaurant, i){
+      $('#searchResult').prepend('<div>' + result[i] + '</div>');
+    });
+
+    // reset form input
+    $searchCategory.val('');
+    console.log(yelp);
+  });
 });
 
 // module.exports=RestaurantRecommender;
