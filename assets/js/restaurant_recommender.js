@@ -132,6 +132,7 @@ class RestaurantRecommender{
 
   filterByCategory(category){
     return this.categories[category];
+
   } 
 
   filterByAverageScore(score){
@@ -143,6 +144,14 @@ class RestaurantRecommender{
       }
     });
     return aboveScoreRestaurants;
+  }
+
+  sortByAverageScoreInCategory(category){
+    var self = this;
+    var sorted = this.categories[category].sort(function(a, b){
+      return self.getRestaurantAverageScore(b) - self.getRestaurantAverageScore(a);
+    });
+    return sorted;
   }
 }
 
