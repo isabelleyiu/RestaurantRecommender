@@ -22,54 +22,57 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Sign Up</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Add your restaurant</a>
+                <form class="userForm">
+                    <label>Register as a User</label>
+                    <input id="username" type="text" placeholder="YOUR USERNAME">
+                    <input type="submit">
+                </form>
             </li>
           </ul>
         </div>
       </nav>
-
-    <header>
-      <form class="userForm">
-          <label>Register as a User</label>
-          <input id="username" type="text" placeholder="YOUR USERNAME">
-          <input type="submit">
-      </form>
-    </header>
-
-    <section>
-        <form class="restaurantForm">
-            <label>Register your restaurant</label>
-            <input id="restaurantName" type="text" placeholder="NAME">
-            <input id="restaurantCategory" type="text" placeholder="CATEGORY">
-            <input type="submit">
-        </form>
-    </section>
+     
+    <!-- new UI -->
+    <div class="jumbotron">
+      <div class="container" align="center">
+        <h1>What are you craving for?...</h1> 
+        <div class="form-group">
+          <label for="sel1">select a category</label>
+          <select class="form-control" id="category-select" >
+            <!-- dynamically create options -->
+          </select>
+        </div>
+      </div>
+    </div>
 
     <section>
-      <form class="ratingForm">
-          <label>Rate a restaurant</label>
-          <input id="ratingRestaurant" type="text" placeholder="RESTAURANT NAME">
-          <input id="ratingCategory" type="text" placeholder="CATEGORY">
-          <input id="ratingUsername" type="text" placeholder="YOUR USERNAME">
-          <input id="rating" type="text" placeholder="RATING 1 TO 100">
-          <input type="submit">
-      </form>
-    </section>
-
-    <section>
-      <form id="searchBar" class="form-inline">
-          <label>What are you craving for?</label>
-          <input id="searchCategory" class="form-control mr-sm-2" type="search" placeholder="Enter a category" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      <div id="searchResult">
-
+      <div class="container" >
+        <div id="search-results-wrap" class="hide align-items-center">
+          <h2>Recommendated Restaurants</h2>
+          <div id="search-results">
+            <!-- dynamically add restaurants -->
+          </div>
+        </div>
+        <div class="row" align="center">
+          <div class="col-6">
+            <form class="ratingForm">
+                <label>Rate a restaurant</label>
+                <input id="ratingRestaurant" type="text" placeholder="RESTAURANT NAME">
+                <input id="ratingCategory" type="text" placeholder="CATEGORY">
+                <input id="ratingUsername" type="text" placeholder="YOUR USERNAME">
+                <input id="rating" type="text" placeholder="RATING 1 TO 100">
+                <input type="submit">
+            </form>
+          </div>
+          <div class="col-6">
+            <form class="restaurantForm">
+                <label>Register your restaurant</label>
+                <input id="restaurantName" type="text" placeholder="NAME">
+                <input id="restaurantCategory" type="text" placeholder="CATEGORY">
+                <input type="submit">
+            </form>
+          </div>
+        </div>
       </div>
     </section>
         
@@ -81,6 +84,8 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-  <script src="restaurant_recommender.js" async defer></script>
+  <script src="assets/js/restaurant_data.js" async defer></script>
+  <script src="assets/js/restaurant_recommender.js" async defer></script>
+  <script src="assets/js/restaurant_recommender_jQuery.js" async defer></script>
 </body>
 </html>
