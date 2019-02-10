@@ -28,17 +28,18 @@ $(document).ready(function(){
 
     $('#search-results').empty();
 
-    var ul = $('<ul>');
+    var div = $('<div>');
     // render result inside searchResult div
     results.forEach(function(restaurant, i){
       // $('#searchResult').prepend('<div>' + result[i] + '</div>');
-      var li = $('<li>').text(restaurant).attr('data-index', i)
-      $(ul).append(li);
+      
+      var html = '<div id="result" class="border border-secondary">' + restaurant + '<br> Foodie Rating: ' + yelp.getRestaurantAverageScore(restaurant) +  '<br>Review: ' + yelp.getRestaurantReviews(restaurant) + '</div>'
+      $(div).append(html);
       
       console.log(restaurant);
     });
     $('#search-results-wrap').removeClass('hide');
-    $('#search-results').append(ul);
+    $('#search-results').append(div);
 
   });
 
