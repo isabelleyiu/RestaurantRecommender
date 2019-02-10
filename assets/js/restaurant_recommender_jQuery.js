@@ -33,7 +33,7 @@ $(document).ready(function(){
     results.forEach(function(restaurant, i){
       // $('#searchResult').prepend('<div>' + result[i] + '</div>');
       
-      var html = '<div id="result" class="border border-secondary">' + restaurant + '<br> Foodie Rating: ' + yelp.getRestaurantAverageScore(restaurant) +  '<br>Review: ' + yelp.getRestaurantReviews(restaurant) + '</div>'
+      var html = '<div id="result" class="border border-danger bg-danger font-weight-bold text-uppercase text-white">' + restaurant + '<br> Foodie Rating: ' + yelp.getRestaurantAverageScore(restaurant) +  '<br>Review: ' + yelp.getRestaurantReviews(restaurant) + '</div>'
       $(div).append(html);
       
       console.log(restaurant);

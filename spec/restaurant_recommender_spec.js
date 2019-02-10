@@ -4,6 +4,7 @@ describe("RestaurantRecommender", function() {
 
   beforeEach(function() {
     rr = new RestaurantRecommender();
+    
   });
 
   describe("User", function() {
