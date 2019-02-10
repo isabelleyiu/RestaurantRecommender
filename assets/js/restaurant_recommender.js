@@ -108,6 +108,18 @@ class RestaurantRecommender{
     }
   }
 
+  getRestaurantReviews(restaurant) {
+    var numReview = 0;
+
+    this.ratings.forEach(function(rating){
+      if(rating.restaurant === restaurant) {
+        numReview += 1;
+      }
+    });
+
+    return numReview;
+  }
+
   getRestaurantAverageScore(restaurant) {
     var totalScores = 0;
     var numReview = 0;
@@ -115,7 +127,7 @@ class RestaurantRecommender{
     this.ratings.forEach(function(rating){
       if(rating.restaurant === restaurant) {
         numReview += 1;
-        totalScores += rating.rating;
+        totalScores += Number(rating.rating);
       }
     });
 
