@@ -2,127 +2,158 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Restaurant Recommender</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="index.css">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><i class="fas fa-utensils"></i> Foodie</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <form id="userForm" class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">@</span>
-                    </div>
-                    <input id="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                    <input class="btn btn-outline-secondary" type="submit" value="Submit">
-                </form>
-            </li>
-          </ul>
-        </div>
-      </nav>
-     
-    <!-- new UI -->
-    <div class="jumbotron text-light">
-      <div class="container" align="center">
-        <h1>What are you craving for?...</h1> 
-        <div class="form-group">
-          <label for="sel1">select a category</label>
-          <select class="form-control" id="category-select" >
-            <!-- dynamically create options -->
-          </select>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Restaurant Recommender</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"><i class="fas fa-utensils"></i> Foodie</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <form id="userForm" class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">@</span>
+            </div>
+            <input id="username" type="text" class="form-control" placeholder="Username" aria-label="Username"
+              aria-describedby="basic-addon1">
+            <input class="btn btn-outline-secondary" type="submit" value="Submit">
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- new UI -->
+  <div class="jumbotron text-light">
+    <div id="searchBar" class="container">
+      <h1>What are you craving for?...</h1>
+      <div class="form-group">
+        <label for="sel1">select a category</label>
+        <select class="form-control" id="category-select">
+          <!-- dynamically create options -->
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div id="search-results-wrap" class="hide">
+        <h2>Recommendated Restaurants</h2>
+        <div id="search-results">
+          <!-- dynamically add restaurants -->
         </div>
       </div>
     </div>
+  </section>
 
-    <section>
-      <div class="container">
-        <div id="search-results-wrap" class="hide">
-          <h2>Recommendated Restaurants</h2>
-          <div id="search-results">
-            <!-- dynamically add restaurants -->
+  <section>
+    <div id="ratingForm" class="card container">
+      <img class="card-img-top" src="assets/ratingCard.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">RATE A RESTAURANT</h5>
+        <form>
+          <div class="form-group">
+            <label for="InputRestaurantName">Restaurant Name</label>
+            <input id="ratingRestaurant" type="text" class="form-control" aria-describedby="restaurantName"
+              placeholder="Restaurant Name">
           </div>
-        </div>
+          <div class="form-group">
+            <label for="InputCategory">Category</label>
+            <input id="ratingCategory" type="text" class="form-control" placeholder="E.g. Chinese, Thai, American, Fast Food...">
+          </div>
+          <div class="form-group">
+            <label for="InputUsername">Your Username</label>
+            <input id="ratingUsername" type="text" class="form-control" placeholder="Your Username">
+          </div>
+          <div class="form-group">
+            <label for="InputRaing">Give It A Rating!</label>
+            <input id="rating" type="text" class="form-control" placeholder="Rate it from 0 to 100">
+          </div>
+          <button type="submit" class="btn btn-danger">Submit</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
-        <div class="row" align="center">
-          <div class="col-6">
-              <div id="ratingForm" class="card">
-                  <img class="card-img-top" src="assets/ratingCard.jpg" alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-title">Rate a restaurant</h5>
-                    <form>
-                        <div class="form-group">
-                          <label for="InputRestaurantName">Restaurant Name</label>
-                          <input id="ratingRestaurant" type="text" class="form-control" aria-describedby="restaurantName" placeholder="Restaurant Name">
-                        </div>
-                        <div class="form-group">
-                          <label for="InputCategory">Category</label>
-                          <input id="ratingCategory" type="text" class="form-control" placeholder="E.g. Chinese, Thai, American, Fast Food...">
-                        </div>
-                        <div class="form-group">
-                            <label for="InputUsername">Your Username</label>
-                            <input id="ratingUsername" type="text" class="form-control" placeholder="Your Username">
-                        </div>
-                        <div class="form-group">
-                            <label for="InputRaing">Give it a rating!</label>
-                            <input id="rating" type="text" class="form-control" placeholder="Rate it from 0 to 100">
-                          </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </form>
-                  </div>
-                </div>
-          </div>
-          <div class="col-6">
-              <div id="restaurantForm" class="card" >
-                  <img class="card-img-top" src="assets/restaurantCard.jpg" alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-title">Register Your Restaurant with us!</h5>
-                    <form>
-                        <div class="form-group">
-                          <label for="InputRestaurantName">Restaurant Name</label>
-                          <input id="restaurantName" type="text" class="form-control" aria-describedby="restaurantName" placeholder="Restaurant Name">
-                        </div>
-                        <div class="form-group">
-                          <label for="InputCategory">Category</label>
-                          <input id="restaurantCategory" type="text" class="form-control" placeholder="E.g. Chinese, Thai, American, Fast Food...">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </form>
-                  </div>
-            <!-- <form class="restaurantForm">
-                <label>Register your restaurant</label>
-                <input id="restaurantName" type="text" placeholder="NAME">
-                <input id="restaurantCategory" type="text" placeholder="CATEGORY">
-                <input type="submit">
-            </form> -->
+  <section class="container">
+    <div class="row" align="center">
+      <div class="col-6">
+        <div id="restaurantForm" class="card">
+          <img class="card-img-top" src="assets/restaurantCard.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">REGISTER YOUR RESTAURANT</h5>
+            <form>
+              <div class="form-group">
+                <label for="InputRestaurantName">Restaurant Name</label>
+                <input id="restaurantName" type="text" class="form-control" aria-describedby="restaurantName"
+                  placeholder="Restaurant Name">
+              </div>
+              <div class="form-group">
+                <label for="InputCategory">Category</label>
+                <input id="restaurantCategory" type="text" class="form-control" placeholder="E.g. Chinese, Thai, American, Fast Food...">
+              </div>
+              <button type="submit" class="btn btn-danger">Submit</button>
+            </form>
           </div>
         </div>
       </div>
-    </section>
-        
 
-      
-    <!--[if lt IE 7]>
+    <div class="col-6">
+      <div id="restaurantForm" class="card">
+        <img class="card-img-top" src="assets/restaurantCard.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">REGISTER YOUR RESTAURANT</h5>
+          <form>
+            <div class="form-group">
+              <label for="InputRestaurantName">Restaurant Name</label>
+              <input id="restaurantName" type="text" class="form-control" aria-describedby="restaurantName"
+                placeholder="Restaurant Name">
+            </div>
+            <div class="form-group">
+              <label for="InputCategory">Category</label>
+              <input id="restaurantCategory" type="text" class="form-control" placeholder="E.g. Chinese, Thai, American, Fast Food...">
+            </div>
+            <button type="submit" class="btn btn-danger">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
   <script src="assets/js/restaurant_data.js" async defer></script>
   <script src="assets/js/restaurant_recommender.js" async defer></script>
   <script src="assets/js/restaurant_recommender_jQuery.js" async defer></script>
 </body>
+
 </html>
