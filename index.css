@@ -5,13 +5,22 @@
 .jumbotron {
   background-image: url(https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);
   background-position: center;
-  height: 100vh;
+  /* height: 100vh; */
+}
+
+nav i {
+  color: red;
 }
 
 #searchBar {
   text-align: center;
-  position: relative;
-  top: 180px;
+}
+
+#result {
+  list-style: none;
+  text-align: center;
+  padding: 50px 50px;
+  margin-bottom: 20px
 }
 
 section {
