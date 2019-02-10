@@ -60,6 +60,8 @@ $(document).ready(function(){
     $ratingCategory.val('');
     $ratingUsername.val('');
     $rating.val('');
+
+    createCategoryOptions(yelp);
     console.log(yelp);
   })
 
@@ -101,12 +103,12 @@ $(document).ready(function(){
     // craete an empty option 
     // so that the select isn't defaulted to any one category
     var option = $('<option>');
+    option.text('Select a category');
     $categorySelect.append(option);
+    
 
     for (var key in yelp.categories) {
       if (yelp.categories.hasOwnProperty(key)) {
-        // Do things here
-        // console.log(key);
         var categoryName = key;
         var option = $('<option>').text(key).val(key);
       
@@ -114,8 +116,5 @@ $(document).ready(function(){
       }
     }
   }
-  
-  
-
 
 });
