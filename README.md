@@ -7,6 +7,7 @@ https://isabelleyiu.github.io/RestaurantRecommender/
 ### Built with: 
 
 Stack: HTML, CSS, Bootstrap, JavaScript, jQuery
+
 Testing: Jasmine
 
 
