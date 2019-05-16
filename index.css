@@ -26,3 +26,7 @@ nav i {
 section {
   padding: 0 0 100px 0;
 }
+
+div.card-body {
+  min-height: 360px;
+}
